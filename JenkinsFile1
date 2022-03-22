@@ -1,9 +1,29 @@
 pipeline{
-  agent any
-  stages{
-      stage('Build'){
-        steps{
-          echo "Good Night"
-      }
-  }
+    agent any
+    
+    stages {
+        stage('Hello'){
+            steps {
+                echo 'Hello wrold'
+            }
+        }
+        stage('Noon'){
+            steps {
+                echo 'Good after noon'
+            }
+        }
+        stage('clonig from Git'){
+            steps{
+                git credentialsId: 'ram1', url: 'https://github.com/parasuram57/Demo1.git'
+                echo "code has been cloned successful"
+            }
+        }
+        stage('Packaging'){
+            steps{
+                bat 'cd C:/Users/SAMTA/SOFTWARES/maven3.8.5/bin'
+                bat 'mvn clean package -DskipTests'
+            }
+        }
+    }
+    
 }
